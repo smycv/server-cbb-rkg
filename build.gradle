@@ -1,0 +1,55 @@
+plugins {
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.1'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	maven {
+		//指定通过不安全的HTTP连接与仓库通信是否可接受
+		allowInsecureProtocol = true
+		url 'http://10.0.0.219:8081/repository/maven-public/'
+		credentials {
+			username 'greatech_deployment'
+			password 'greatech@2023'
+		}
+	}
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
+
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.2'
+
+	implementation group: 'org.mybatis.dynamic-sql', name: 'mybatis-dynamic-sql', version: '1.5.0'
+
+	implementation group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.4.6'
+
+//	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.4.0'
+
+	//apache poi excel
+	implementation group: 'org.apache.poi', name: 'poi', version: '5.3.0'
+
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.3.0'
+
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.17.2'
+
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.2'
+}
+
+test {
+	useJUnitPlatform()
+}
