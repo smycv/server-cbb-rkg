@@ -25,7 +25,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Mapper
 public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<ETMeasure>, CommonUpdateMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    BasicColumn[] selectList = BasicColumn.columnList(id, content, createTime, uodateBy, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(id, content, createTime, updateBy, updateTime);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -33,7 +33,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="uodate_by", property="uodateBy", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<ETMeasure> selectMany(SelectStatementProvider selectStatement);
@@ -66,7 +66,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
             c.map(id).toProperty("id")
             .map(content).toProperty("content")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -77,7 +77,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
             c.map(id).toProperty("id")
             .map(content).toProperty("content")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -88,7 +88,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
             c.map(id).toPropertyWhenPresent("id", row::getId)
             .map(content).toPropertyWhenPresent("content", row::getContent)
             .map(createTime).toPropertyWhenPresent("createTime", row::getCreateTime)
-            .map(uodateBy).toPropertyWhenPresent("uodateBy", row::getUodateBy)
+            .map(updateBy).toPropertyWhenPresent("updateBy", row::getUpdateBy)
             .map(updateTime).toPropertyWhenPresent("updateTime", row::getUpdateTime)
         );
     }
@@ -125,7 +125,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
         return dsl.set(id).equalTo(row::getId)
                 .set(content).equalTo(row::getContent)
                 .set(createTime).equalTo(row::getCreateTime)
-                .set(uodateBy).equalTo(row::getUodateBy)
+                .set(updateBy).equalTo(row::getUpdateBy)
                 .set(updateTime).equalTo(row::getUpdateTime);
     }
 
@@ -134,7 +134,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
         return dsl.set(id).equalToWhenPresent(row::getId)
                 .set(content).equalToWhenPresent(row::getContent)
                 .set(createTime).equalToWhenPresent(row::getCreateTime)
-                .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+                .set(updateBy).equalToWhenPresent(row::getUpdateBy)
                 .set(updateTime).equalToWhenPresent(row::getUpdateTime);
     }
 
@@ -143,7 +143,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
         return update(c ->
             c.set(content).equalTo(row::getContent)
             .set(createTime).equalTo(row::getCreateTime)
-            .set(uodateBy).equalTo(row::getUodateBy)
+            .set(updateBy).equalTo(row::getUpdateBy)
             .set(updateTime).equalTo(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );
@@ -154,7 +154,7 @@ public interface ETMeasureMapper extends CommonCountMapper, CommonDeleteMapper, 
         return update(c ->
             c.set(content).equalToWhenPresent(row::getContent)
             .set(createTime).equalToWhenPresent(row::getCreateTime)
-            .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+            .set(updateBy).equalToWhenPresent(row::getUpdateBy)
             .set(updateTime).equalToWhenPresent(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );

@@ -7,40 +7,38 @@ import org.mybatis.dynamic.sql.SqlColumn;
 import java.sql.JDBCType;
 import java.util.Date;
 
-public final class ETRkgedgeDynamicSqlSupport {
+public final class ETRkgedgeADynamicSqlSupport {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final ETRkgedge ETRkgedge = new ETRkgedge();
+    public static final ETRkgedgeA ETRkgedgeA = new ETRkgedgeA();
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> id = ETRkgedge.id;
+    public static final SqlColumn<Long> id = ETRkgedgeA.id;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> source = ETRkgedge.source;
+    public static final SqlColumn<String> source = ETRkgedgeA.source;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> target = ETRkgedge.target;
+    public static final SqlColumn<String> target = ETRkgedgeA.target;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<String> tag = ETRkgedge.tag;
+    public static final SqlColumn<Date> createTime = ETRkgedgeA.createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Date> createTime = ETRkgedge.createTime;
+    public static final SqlColumn<Long> updateBy = ETRkgedgeA.updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> updateBy = ETRkgedge.updateBy;
+    public static final SqlColumn<Date> updateTime = ETRkgedgeA.updateTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Date> updateTime = ETRkgedge.updateTime;
+    public static final SqlColumn<String> style = ETRkgedgeA.style;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final class ETRkgedge extends AliasableSqlTable<ETRkgedge> {
+    public static final class ETRkgedgeA extends AliasableSqlTable<ETRkgedgeA> {
         public final SqlColumn<Long> id = column("id", JDBCType.BIGINT);
 
-        public final SqlColumn<Long> source = column("source", JDBCType.BIGINT);
+        public final SqlColumn<String> source = column("source", JDBCType.VARCHAR);
 
-        public final SqlColumn<Long> target = column("target", JDBCType.BIGINT);
-
-        public final SqlColumn<String> tag = column("tag", JDBCType.VARCHAR);
+        public final SqlColumn<String> target = column("target", JDBCType.VARCHAR);
 
         public final SqlColumn<Date> createTime = column("create_time", JDBCType.TIMESTAMP);
 
@@ -48,8 +46,10 @@ public final class ETRkgedgeDynamicSqlSupport {
 
         public final SqlColumn<Date> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
-        public ETRkgedge() {
-            super("e_t_rkgedge", ETRkgedge::new);
+        public final SqlColumn<String> style = column("style", JDBCType.LONGVARCHAR);
+
+        public ETRkgedgeA() {
+            super("e_t_rkgedge_a", ETRkgedgeA::new);
         }
     }
 }

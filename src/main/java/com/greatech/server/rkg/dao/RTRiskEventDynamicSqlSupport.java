@@ -24,7 +24,7 @@ public final class RTRiskEventDynamicSqlSupport {
     public static final SqlColumn<Date> createTime = RTRiskEvent.createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> uodateBy = RTRiskEvent.uodateBy;
+    public static final SqlColumn<Long> updateBy = RTRiskEvent.updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<Date> updateTime = RTRiskEvent.updateTime;
@@ -39,7 +39,7 @@ public final class RTRiskEventDynamicSqlSupport {
 
         public final SqlColumn<Date> createTime = column("create_time", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<Long> uodateBy = column("uodate_by", JDBCType.BIGINT);
+        public final SqlColumn<Long> updateBy = column("update_by", JDBCType.BIGINT);
 
         public final SqlColumn<Date> updateTime = column("update_time", JDBCType.TIMESTAMP);
 

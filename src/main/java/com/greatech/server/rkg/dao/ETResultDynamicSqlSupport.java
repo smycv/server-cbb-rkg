@@ -21,7 +21,7 @@ public final class ETResultDynamicSqlSupport {
     public static final SqlColumn<Date> createTime = ETResult.createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> uodateBy = ETResult.uodateBy;
+    public static final SqlColumn<Long> updateBy = ETResult.updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<Date> updateTime = ETResult.updateTime;
@@ -34,7 +34,7 @@ public final class ETResultDynamicSqlSupport {
 
         public final SqlColumn<Date> createTime = column("create_time", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<Long> uodateBy = column("uodate_by", JDBCType.BIGINT);
+        public final SqlColumn<Long> updateBy = column("update_by", JDBCType.BIGINT);
 
         public final SqlColumn<Date> updateTime = column("update_time", JDBCType.TIMESTAMP);
 

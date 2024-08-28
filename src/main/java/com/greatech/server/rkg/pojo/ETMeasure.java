@@ -16,7 +16,7 @@ public class ETMeasure implements Serializable {
     private Date createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Long uodateBy;
+    private Long updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date updateTime;
@@ -55,13 +55,13 @@ public class ETMeasure implements Serializable {
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Long getUodateBy() {
-        return uodateBy;
+    public Long getUpdateBy() {
+        return updateBy;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setUodateBy(Long uodateBy) {
-        this.uodateBy = uodateBy;
+    public void setUpdateBy(Long updateBy) {
+        this.updateBy = updateBy;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -84,7 +84,7 @@ public class ETMeasure implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", content=").append(content);
         sb.append(", createTime=").append(createTime);
-        sb.append(", uodateBy=").append(uodateBy);
+        sb.append(", updateBy=").append(updateBy);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

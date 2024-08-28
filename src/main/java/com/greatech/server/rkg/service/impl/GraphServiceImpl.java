@@ -1,21 +1,21 @@
 package com.greatech.server.rkg.service.impl;
 
-import com.greatech.server.rkg.dao.ETRkgedgeDynamicSqlSupport;
-import com.greatech.server.rkg.dao.ETRkgedgeMapper;
-import com.greatech.server.rkg.dao.ETRkgnodeDynamicSqlSupport;
-import com.greatech.server.rkg.dao.ETRkgnodeMapper;
+import com.greatech.server.rkg.dao.*;
 import com.greatech.server.rkg.pojo.ETRkgedge;
+import com.greatech.server.rkg.pojo.ETRkgedgeA;
 import com.greatech.server.rkg.pojo.ETRkgnode;
+import com.greatech.server.rkg.pojo.ETRkgnodeA;
+import com.greatech.server.rkg.repository.RKGRepository;
 import com.greatech.server.rkg.service.GraphService;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
+import org.mybatis.dynamic.sql.select.function.Cast;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static org.mybatis.dynamic.sql.SqlBuilder.isEqualToWhenPresent;
-import static org.mybatis.dynamic.sql.SqlBuilder.select;
+import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Service
 public class GraphServiceImpl implements GraphService {
@@ -25,7 +25,13 @@ public class GraphServiceImpl implements GraphService {
     ETRkgnodeMapper eTRkgnodeMapper;
 
     @Autowired
+    ETRkgnodeAMapper eTRkgnodeAMapper;
+
+    @Autowired
     ETRkgedgeMapper eTRkgedgeMapper;
+
+    @Autowired
+    ETRkgedgeAMapper eTRkgedgeAMapper;
 
     @Override
     public ETRkgnode addNode(ETRkgnode record) {
@@ -50,6 +56,25 @@ public class GraphServiceImpl implements GraphService {
         throw new RuntimeException();
     }
 
+    @Autowired
+    RKGRepository rKGRepository;
+
+    @Override
+    public ETRkgnodeA addNodeA(ETRkgnodeA record) {
+        Optional<ETRkgnodeA> node = rKGRepository.selectETRkgnodeAOne(record);
+        if (node.isPresent()) {
+            return node.get();
+        }
+        //如果没有，新增后查询返回
+        eTRkgnodeAMapper.insertSelective(record);
+        node = rKGRepository.selectETRkgnodeAOne(record);
+        if (node.isPresent()) {
+            return node.get();
+        }
+        //新增后查不出来 抛异常
+        throw new RuntimeException();
+    }
+
     @Override
     public ETRkgedge addEdge(ETRkgedge record) {
         //查询，已经有了查出来返回
@@ -67,6 +92,22 @@ public class GraphServiceImpl implements GraphService {
         //如果没有，新增后查询返回
         eTRkgedgeMapper.insertSelective(record);
         edge = eTRkgedgeMapper.selectOne(sqlDsl);
+        if (edge.isPresent()) {
+            return edge.get();
+        }
+        //新增后查不出来 抛异常
+        throw new RuntimeException();
+    }
+
+    @Override
+    public ETRkgedgeA addEdgeA(ETRkgedgeA record) {
+        Optional<ETRkgedgeA> edge = rKGRepository.selectETRkgedgeAOne(record);
+        if (edge.isPresent()) {
+            return edge.get();
+        }
+        //如果没有，新增后查询返回
+        eTRkgedgeAMapper.insertSelective(record);
+        edge = rKGRepository.selectETRkgedgeAOne(record);
         if (edge.isPresent()) {
             return edge.get();
         }

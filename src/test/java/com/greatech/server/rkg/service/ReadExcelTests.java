@@ -22,7 +22,7 @@ public class ReadExcelTests {
     @Test
     void read() throws Exception {
         //1.还是一样得到一个excel文件对象，但是我们这里是读 ， 所以要指定文件路径
-        FileInputStream fileInputStream = new FileInputStream(new File("D:\\rkg-demo\\test2.xlsx"));
+        FileInputStream fileInputStream = new FileInputStream(new File("D:\\rkg-demo\\test1.xlsx"));
         XSSFWorkbook excel = new XSSFWorkbook(fileInputStream);
         //2.读取excel文件中的sheet1页（因为这个文件就只创建了一个sheet页）
         //XSSFSheet sheet = excel.getSheetAt(0);//这是直接拿第一个sheet页

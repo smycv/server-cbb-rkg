@@ -7,48 +7,39 @@ import org.mybatis.dynamic.sql.SqlColumn;
 import java.sql.JDBCType;
 import java.util.Date;
 
-public final class ETRkgnodeDynamicSqlSupport {
+public final class ETRkgnodeADynamicSqlSupport {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final ETRkgnode ETRkgnode = new ETRkgnode();
+    public static final ETRkgnodeA ETRkgnodeA = new ETRkgnodeA();
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> id = ETRkgnode.id;
+    public static final SqlColumn<Long> id = ETRkgnodeA.id;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<String> name = ETRkgnode.name;
+    public static final SqlColumn<String> nodeClass = ETRkgnodeA.nodeClass;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> objId = ETRkgnode.objId;
+    public static final SqlColumn<String> type = ETRkgnodeA.type;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<String> obj = ETRkgnode.obj;
+    public static final SqlColumn<Date> createTime = ETRkgnodeA.createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<String> color = ETRkgnode.color;
+    public static final SqlColumn<Long> updateBy = ETRkgnodeA.updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<String> type = ETRkgnode.type;
+    public static final SqlColumn<Date> updateTime = ETRkgnodeA.updateTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Date> createTime = ETRkgnode.createTime;
+    public static final SqlColumn<String> data = ETRkgnodeA.data;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Long> updateBy = ETRkgnode.updateBy;
+    public static final SqlColumn<String> style = ETRkgnodeA.style;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final SqlColumn<Date> updateTime = ETRkgnode.updateTime;
-
-    @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public static final class ETRkgnode extends AliasableSqlTable<ETRkgnode> {
+    public static final class ETRkgnodeA extends AliasableSqlTable<ETRkgnodeA> {
         public final SqlColumn<Long> id = column("id", JDBCType.BIGINT);
 
-        public final SqlColumn<String> name = column("name", JDBCType.VARCHAR);
-
-        public final SqlColumn<Long> objId = column("obj_id", JDBCType.BIGINT);
-
-        public final SqlColumn<String> obj = column("obj", JDBCType.VARCHAR);
-
-        public final SqlColumn<String> color = column("color", JDBCType.VARCHAR);
+        public final SqlColumn<String> nodeClass = column("node_class", JDBCType.VARCHAR);
 
         public final SqlColumn<String> type = column("type", JDBCType.VARCHAR);
 
@@ -58,8 +49,12 @@ public final class ETRkgnodeDynamicSqlSupport {
 
         public final SqlColumn<Date> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
-        public ETRkgnode() {
-            super("e_t_rkgnode", ETRkgnode::new);
+        public final SqlColumn<String> data = column("data", JDBCType.LONGVARCHAR);
+
+        public final SqlColumn<String> style = column("style", JDBCType.LONGVARCHAR);
+
+        public ETRkgnodeA() {
+            super("e_t_rkgnode_a", ETRkgnodeA::new);
         }
     }
 }

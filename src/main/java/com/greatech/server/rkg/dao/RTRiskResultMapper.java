@@ -25,7 +25,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Mapper
 public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<RTRiskResult>, CommonUpdateMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    BasicColumn[] selectList = BasicColumn.columnList(id, riskId, resultId, createTime, uodateBy, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(id, riskId, resultId, createTime, updateBy, updateTime);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -34,7 +34,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
         @Result(column="risk_id", property="riskId", jdbcType=JdbcType.BIGINT),
         @Result(column="result_id", property="resultId", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="uodate_by", property="uodateBy", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<RTRiskResult> selectMany(SelectStatementProvider selectStatement);
@@ -68,7 +68,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
             .map(riskId).toProperty("riskId")
             .map(resultId).toProperty("resultId")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -80,7 +80,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
             .map(riskId).toProperty("riskId")
             .map(resultId).toProperty("resultId")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -92,7 +92,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
             .map(riskId).toPropertyWhenPresent("riskId", row::getRiskId)
             .map(resultId).toPropertyWhenPresent("resultId", row::getResultId)
             .map(createTime).toPropertyWhenPresent("createTime", row::getCreateTime)
-            .map(uodateBy).toPropertyWhenPresent("uodateBy", row::getUodateBy)
+            .map(updateBy).toPropertyWhenPresent("updateBy", row::getUpdateBy)
             .map(updateTime).toPropertyWhenPresent("updateTime", row::getUpdateTime)
         );
     }
@@ -130,7 +130,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
                 .set(riskId).equalTo(row::getRiskId)
                 .set(resultId).equalTo(row::getResultId)
                 .set(createTime).equalTo(row::getCreateTime)
-                .set(uodateBy).equalTo(row::getUodateBy)
+                .set(updateBy).equalTo(row::getUpdateBy)
                 .set(updateTime).equalTo(row::getUpdateTime);
     }
 
@@ -140,7 +140,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
                 .set(riskId).equalToWhenPresent(row::getRiskId)
                 .set(resultId).equalToWhenPresent(row::getResultId)
                 .set(createTime).equalToWhenPresent(row::getCreateTime)
-                .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+                .set(updateBy).equalToWhenPresent(row::getUpdateBy)
                 .set(updateTime).equalToWhenPresent(row::getUpdateTime);
     }
 
@@ -150,7 +150,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
             c.set(riskId).equalTo(row::getRiskId)
             .set(resultId).equalTo(row::getResultId)
             .set(createTime).equalTo(row::getCreateTime)
-            .set(uodateBy).equalTo(row::getUodateBy)
+            .set(updateBy).equalTo(row::getUpdateBy)
             .set(updateTime).equalTo(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );
@@ -162,7 +162,7 @@ public interface RTRiskResultMapper extends CommonCountMapper, CommonDeleteMappe
             c.set(riskId).equalToWhenPresent(row::getRiskId)
             .set(resultId).equalToWhenPresent(row::getResultId)
             .set(createTime).equalToWhenPresent(row::getCreateTime)
-            .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+            .set(updateBy).equalToWhenPresent(row::getUpdateBy)
             .set(updateTime).equalToWhenPresent(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );

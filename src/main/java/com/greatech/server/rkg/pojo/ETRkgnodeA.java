@@ -5,15 +5,15 @@ import jakarta.annotation.Generated;
 import java.io.Serializable;
 import java.util.Date;
 
-public class RTRiskReason implements Serializable {
+public class ETRkgnodeA implements Serializable {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Long id;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Long riskId;
+    private String nodeClass;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Long reasonId;
+    private String type;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date createTime;
@@ -23,6 +23,12 @@ public class RTRiskReason implements Serializable {
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Date updateTime;
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    private String data;
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    private String style;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private static final long serialVersionUID = 1L;
@@ -38,23 +44,23 @@ public class RTRiskReason implements Serializable {
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Long getRiskId() {
-        return riskId;
+    public String getNodeClass() {
+        return nodeClass;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setRiskId(Long riskId) {
-        this.riskId = riskId;
+    public void setNodeClass(String nodeClass) {
+        this.nodeClass = nodeClass;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Long getReasonId() {
-        return reasonId;
+    public String getType() {
+        return type;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setReasonId(Long reasonId) {
-        this.reasonId = reasonId;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -87,6 +93,26 @@ public class RTRiskReason implements Serializable {
         this.updateTime = updateTime;
     }
 
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public String getData() {
+        return data;
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public String getStyle() {
+        return style;
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
     @Override
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public String toString() {
@@ -95,11 +121,13 @@ public class RTRiskReason implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", riskId=").append(riskId);
-        sb.append(", reasonId=").append(reasonId);
+        sb.append(", nodeClass=").append(nodeClass);
+        sb.append(", type=").append(type);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateBy=").append(updateBy);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", data=").append(data);
+        sb.append(", style=").append(style);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

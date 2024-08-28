@@ -25,7 +25,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Mapper
 public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<ETRkgedge>, CommonUpdateMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    BasicColumn[] selectList = BasicColumn.columnList(id, source, target, tag, createTime, uodateBy, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(id, source, target, tag, createTime, updateBy, updateTime);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -35,7 +35,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
         @Result(column="target", property="target", jdbcType=JdbcType.BIGINT),
         @Result(column="tag", property="tag", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="uodate_by", property="uodateBy", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<ETRkgedge> selectMany(SelectStatementProvider selectStatement);
@@ -70,7 +70,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
             .map(target).toProperty("target")
             .map(tag).toProperty("tag")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -83,7 +83,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
             .map(target).toProperty("target")
             .map(tag).toProperty("tag")
             .map(createTime).toProperty("createTime")
-            .map(uodateBy).toProperty("uodateBy")
+            .map(updateBy).toProperty("updateBy")
             .map(updateTime).toProperty("updateTime")
         );
     }
@@ -96,7 +96,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
             .map(target).toPropertyWhenPresent("target", row::getTarget)
             .map(tag).toPropertyWhenPresent("tag", row::getTag)
             .map(createTime).toPropertyWhenPresent("createTime", row::getCreateTime)
-            .map(uodateBy).toPropertyWhenPresent("uodateBy", row::getUodateBy)
+            .map(updateBy).toPropertyWhenPresent("updateBy", row::getUpdateBy)
             .map(updateTime).toPropertyWhenPresent("updateTime", row::getUpdateTime)
         );
     }
@@ -135,7 +135,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
                 .set(target).equalTo(row::getTarget)
                 .set(tag).equalTo(row::getTag)
                 .set(createTime).equalTo(row::getCreateTime)
-                .set(uodateBy).equalTo(row::getUodateBy)
+                .set(updateBy).equalTo(row::getUpdateBy)
                 .set(updateTime).equalTo(row::getUpdateTime);
     }
 
@@ -146,7 +146,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
                 .set(target).equalToWhenPresent(row::getTarget)
                 .set(tag).equalToWhenPresent(row::getTag)
                 .set(createTime).equalToWhenPresent(row::getCreateTime)
-                .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+                .set(updateBy).equalToWhenPresent(row::getUpdateBy)
                 .set(updateTime).equalToWhenPresent(row::getUpdateTime);
     }
 
@@ -157,7 +157,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
             .set(target).equalTo(row::getTarget)
             .set(tag).equalTo(row::getTag)
             .set(createTime).equalTo(row::getCreateTime)
-            .set(uodateBy).equalTo(row::getUodateBy)
+            .set(updateBy).equalTo(row::getUpdateBy)
             .set(updateTime).equalTo(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );
@@ -170,7 +170,7 @@ public interface ETRkgedgeMapper extends CommonCountMapper, CommonDeleteMapper, 
             .set(target).equalToWhenPresent(row::getTarget)
             .set(tag).equalToWhenPresent(row::getTag)
             .set(createTime).equalToWhenPresent(row::getCreateTime)
-            .set(uodateBy).equalToWhenPresent(row::getUodateBy)
+            .set(updateBy).equalToWhenPresent(row::getUpdateBy)
             .set(updateTime).equalToWhenPresent(row::getUpdateTime)
             .where(id, isEqualTo(row::getId))
         );
