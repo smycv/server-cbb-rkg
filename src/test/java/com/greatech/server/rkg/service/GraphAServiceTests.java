@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.greatech.server.rkg.RKGApplication;
 import com.greatech.server.rkg.dao.*;
 import com.greatech.server.rkg.pojo.*;
+import com.greatech.server.rkg.repository.RKGRepository;
 import org.apache.commons.text.StringEscapeUtils;
 import org.junit.jupiter.api.Test;
 import org.mybatis.dynamic.sql.SqlColumn;
@@ -17,6 +18,7 @@ import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -138,7 +140,7 @@ public class GraphAServiceTests {
 //                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险的主体"))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
-        System.out.println(sqlDsl_.getSelectStatement());
+//        System.out.println(sqlDsl_.getSelectStatement());
         List<ETRkgedgeA> edgeList = eTRkgedgeAMapper.selectMany(sqlDsl_);
 
 
@@ -169,5 +171,25 @@ public class GraphAServiceTests {
         String s1="{\\\"risk\\\": \\\"粗裂解汽油/6''-P-70001流量下降(FIC70005)\\\"}";
         System.out.println(s1);
         System.out.println(StringEscapeUtils.unescapeJava(s1));
+    }
+
+
+    @Autowired
+    RKGRepository rKGRepository;
+    @Test
+    void changeColor(){
+        List<Long> nodes =new ArrayList<>();
+        nodes.add(689L);
+        nodes.add(656L);
+        nodes.add(649L);
+        nodes.add(556L);
+        nodes.add(559L);
+        nodes.forEach(node->{
+            rKGRepository.changeNodeAcolorRed(node);
+        });
+
+//        nodes.forEach(node->{
+//            rKGRepository.changeNodeAcolorGreen(node);
+//        });
     }
 }

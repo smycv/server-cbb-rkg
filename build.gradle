@@ -2,11 +2,44 @@ plugins {
 	id 'org.springframework.boot' version '3.1.0'
 	id 'io.spring.dependency-management' version '1.1.1'
 	id 'java'
+	id "io.freefair.lombok" version "6.3.0" //lombok gradle打包插件 在ide外部 用于jenkins build
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
+
+allprojects {
+	tasks.withType(Javadoc).configureEach { enabled = false }
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = "UTF-8"
+	options.compilerArgs << "-Xlint:unchecked"
+}
+
+tasks.withType(Javadoc).configureEach {
+	options.encoding = 'UTF-8'
+}
+
+
+// 打包SDK publish的时候放行
+sourceSets {
+	main {
+		java {
+//            exclude '**/rkg/controller/**'
+		}
+		resources {
+//            exclude '**/*.properties'
+			exclude '**/build/**' //排除构建用文件
+		}
+	}
+}
+
+java {
+	withJavadocJar()
+	withSourcesJar()
+}
 
 repositories {
 	maven {
@@ -36,9 +69,27 @@ dependencies {
 
 	implementation group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.4.6'
 
-//	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
-
 	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.4.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
+
+	implementation group: 'com.github.xiaoymin', name: 'knife4j-springdoc-ui', version: '3.0.3'
+
+	//todo idea需要配置annotationProcessor 需要安装lombok插件
+	implementation 'org.projectlombok:lombok:1.18.22'
+	//lombok先执行annotationProcessor 预处理
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	testCompileOnly 'org.projectlombok:lombok:1.18.22'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	//todo idea需要配置annotationProcessor 需要安装mapstruct插件 与lombok冲突
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	//mapStruct再执行annotationProcessor 预处理
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	testCompileOnly 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
 	//apache poi excel
 	implementation group: 'org.apache.poi', name: 'poi', version: '5.3.0'
@@ -53,6 +104,15 @@ dependencies {
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.16.0'
 
 	implementation group: 'org.apache.commons', name: 'commons-text', version: '1.12.0'
+
+	//JAXB API是java EE 的API，在java SE 9.0 中不再包含这个 Jar 包
+	implementation 'javax.xml.bind:jaxb-api:2.3.0'
+	implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+	implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+	implementation 'javax.activation:activation:1.1.1'
+
+	//Java EE正式更名为Jakarta   javax -> jakarta
+	implementation group: 'jakarta.annotation', name: 'jakarta.annotation-api', version: '2.1.1'
 }
 
 test {

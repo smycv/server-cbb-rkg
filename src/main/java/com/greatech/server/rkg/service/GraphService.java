@@ -6,6 +6,8 @@ import com.greatech.server.rkg.pojo.ETRkgnode;
 import com.greatech.server.rkg.pojo.ETRkgnodeA;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface GraphService {
 
@@ -18,6 +20,9 @@ public interface GraphService {
     ETRkgedgeA addEdgeA(ETRkgedgeA record);
 
 
+    List<ETRkgnodeA> findNodeA();
+
+    List<ETRkgedgeA> findEdgeA();
 
 
 }

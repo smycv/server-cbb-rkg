@@ -17,4 +17,6 @@ public interface RiskService {
     Long findOtherRiskByResult(ETResult record);
 
     RTRiskEvent findRTRiskEvent(ETRisk record);
+
+    ETEvent findEvent(ETRisk record);
 }

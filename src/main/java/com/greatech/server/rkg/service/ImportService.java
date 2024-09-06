@@ -13,7 +13,7 @@ public interface ImportService {
     ETFacility selectOrAddETFacility(ETFacility record);
 
     //事件
-    ETEvent selectOrAddETEvent(ETFacility facility, ETEvent record);
+    ETEvent selectOrAddETEvent(ETEvent record);
 
     //主体事件关系
     RTFacilityEvent selectOrAddRTFacilityEvent(ETFacility facility, ETEvent event);

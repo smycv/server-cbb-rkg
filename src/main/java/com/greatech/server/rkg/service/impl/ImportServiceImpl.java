@@ -48,7 +48,7 @@ public class ImportServiceImpl implements ImportService {
     ETEventMapper eTEventMapper;
 
     @Override
-    public ETEvent selectOrAddETEvent(ETFacility facility, ETEvent record) {
+    public ETEvent selectOrAddETEvent(ETEvent record) {
         SelectStatementProvider sqlDsl = select(ETEventDynamicSqlSupport.ETEvent.allColumns())
                 .from(ETEventDynamicSqlSupport.ETEvent)
                 .where(ETEventDynamicSqlSupport.ETEvent.determine, isEqualToWhenPresent(record.getDetermine()))
@@ -56,18 +56,8 @@ public class ImportServiceImpl implements ImportService {
                 .render(RenderingStrategies.MYBATIS3);
         Optional<ETEvent> event = eTEventMapper.selectOne(sqlDsl);
         if (event.isPresent()) {//有事件
-            SelectStatementProvider sqlDsl4facility = select(RTFacilityEventDynamicSqlSupport.RTFacilityEvent.allColumns())
-                    .from(RTFacilityEventDynamicSqlSupport.RTFacilityEvent)
-                    .where(RTFacilityEventDynamicSqlSupport.RTFacilityEvent.facilityId, isEqualToWhenPresent(facility.getId()))
-                    .and(RTFacilityEventDynamicSqlSupport.RTFacilityEvent.eventId, isEqualToWhenPresent(event.get().getId()))
-                    .build()
-                    .render(RenderingStrategies.MYBATIS3);
-            Optional<RTFacilityEvent> r = rTFacilityEventMapper.selectOne(sqlDsl4facility);
-            if (r.isPresent()) {//主体事件都一致 不新增事件
-                return event.get();
-            }
+            return event.get();
         }
-
         eTEventMapper.insertSelective(record);
         event = eTEventMapper.selectOne(sqlDsl);
         if (event.isPresent()) {

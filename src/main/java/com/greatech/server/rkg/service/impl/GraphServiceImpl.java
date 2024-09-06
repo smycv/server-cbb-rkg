@@ -7,12 +7,17 @@ import com.greatech.server.rkg.pojo.ETRkgnode;
 import com.greatech.server.rkg.pojo.ETRkgnodeA;
 import com.greatech.server.rkg.repository.RKGRepository;
 import com.greatech.server.rkg.service.GraphService;
+import org.mybatis.dynamic.sql.SqlColumn;
+import org.mybatis.dynamic.sql.SqlTable;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.function.Cast;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
+import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
+import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
@@ -114,5 +119,34 @@ public class GraphServiceImpl implements GraphService {
         //新增后查不出来 抛异常
         throw new RuntimeException();
     }
+
+    @Override
+    public List<ETRkgnodeA> findNodeA() {
+
+        SelectStatementProvider sqlDsl = select(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.allColumns())
+                .from(ETRkgnodeADynamicSqlSupport.ETRkgnodeA)
+                .where(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("risk"))
+//                .or(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("facility"))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+
+        return eTRkgnodeAMapper.selectMany(sqlDsl);
+    }
+
+    @Override
+    public List<ETRkgedgeA> findEdgeA() {
+
+        SelectStatementProvider sqlDsl = select(ETRkgedgeADynamicSqlSupport.ETRkgedgeA.allColumns())
+                .from(ETRkgedgeADynamicSqlSupport.ETRkgedgeA)
+                .where(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险导致风险(后果)"))
+//                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险的主体"))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+
+//        System.out.println(sqlDsl_.getSelectStatement());
+
+        return eTRkgedgeAMapper.selectMany(sqlDsl);
+    }
+
 
 }

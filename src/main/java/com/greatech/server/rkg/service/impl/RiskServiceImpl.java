@@ -116,4 +116,19 @@ public class RiskServiceImpl implements RiskService {
         Optional<RTRiskEvent> rTRiskEvent = rTRiskEventMapper.selectOne(sqlDsl);
         return rTRiskEvent.orElse(null);
     }
+
+    @Autowired
+    ETEventMapper eTEventMapper;
+
+    @Override
+    public ETEvent findEvent(ETRisk record) {
+        RTRiskEvent r=findRTRiskEvent(record);
+        SelectStatementProvider sqlDsl = select(ETEventDynamicSqlSupport.ETEvent.allColumns())
+                .from(ETEventDynamicSqlSupport.ETEvent)
+                .where(ETEventDynamicSqlSupport.ETEvent.id, isEqualToWhenPresent(r.getEventId()))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+        Optional<ETEvent> event=eTEventMapper.selectOne(sqlDsl);
+        return event.orElse(null);
+    }
 }

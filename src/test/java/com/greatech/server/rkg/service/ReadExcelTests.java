@@ -118,7 +118,7 @@ public class ReadExcelTests {
         ETEvent event = new ETEvent();
         event.setId(node_event.getId());
         event.setDetermine(event_condition);
-        event = importService.selectOrAddETEvent(facility, event);
+        event = importService.selectOrAddETEvent(event);
 
         importService.selectOrAddRTFacilityEvent(facility, event);
 
@@ -183,7 +183,7 @@ public class ReadExcelTests {
 
                                 event.setId(node_event.getId());
                                 event.setDetermine(event_condition);
-                                event = importService.selectOrAddETEvent(facility, event);
+                                event = importService.selectOrAddETEvent(event);
 
                                 importService.selectOrAddRTFacilityEvent(facility, event);
 
@@ -257,7 +257,7 @@ public class ReadExcelTests {
 
                             event.setId(node_event.getId());
                             event.setDetermine(event_condition);
-                            event = importService.selectOrAddETEvent(facility, event);
+                            event = importService.selectOrAddETEvent(event);
                             importService.selectOrAddRTFacilityEvent(facility, event);
                             //后果的事件
                             importService.selectOrAddRTResultEvent(result, event);
