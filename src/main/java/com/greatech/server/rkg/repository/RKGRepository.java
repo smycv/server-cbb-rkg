@@ -12,6 +12,9 @@ public interface RKGRepository {
     @Select("select * from e_t_rkgnode_a where node_class = #{nodeClass} and data = CAST(#{data} as JSON) and type = #{type} and style = CAST(#{style} as JSON)")
     Optional<ETRkgnodeA> selectETRkgnodeAOne(ETRkgnodeA record);
 
+    @Select("select * from e_t_rkgnode_a where node_class = #{nodeClass} and data = CAST(#{data} as JSON)")
+    Optional<ETRkgnodeA> selectETRkgnodeAFacilityOne(ETRkgnodeA record);
+
     @Select("select * from e_t_rkgedge_a where source = #{source} and target = #{target} and style = CAST(#{style} as JSON)")
     Optional<ETRkgedgeA> selectETRkgedgeAOne(ETRkgedgeA record);
 

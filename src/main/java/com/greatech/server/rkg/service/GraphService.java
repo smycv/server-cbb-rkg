@@ -22,7 +22,9 @@ public interface GraphService {
 
     List<ETRkgnodeA> findNodeA();
 
+    List<ETRkgnodeA> findNodeB();
+
     List<ETRkgedgeA> findEdgeA();
 
-
+    List<ETRkgedgeA> findEdgeB();
 }

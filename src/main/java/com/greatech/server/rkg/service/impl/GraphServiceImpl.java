@@ -126,7 +126,20 @@ public class GraphServiceImpl implements GraphService {
         SelectStatementProvider sqlDsl = select(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.allColumns())
                 .from(ETRkgnodeADynamicSqlSupport.ETRkgnodeA)
                 .where(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("risk"))
-//                .or(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("facility"))
+                .or(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("facility"))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+
+        return eTRkgnodeAMapper.selectMany(sqlDsl);
+    }
+
+    @Override
+    public List<ETRkgnodeA> findNodeB() {
+        SelectStatementProvider sqlDsl = select(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.allColumns())
+                .from(ETRkgnodeADynamicSqlSupport.ETRkgnodeA)
+                .where(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("risk"))
+                .or(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("facility"))
+                .or(ETRkgnodeADynamicSqlSupport.ETRkgnodeA.nodeClass, isEqualToWhenPresent("measure"))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
 
@@ -139,7 +152,23 @@ public class GraphServiceImpl implements GraphService {
         SelectStatementProvider sqlDsl = select(ETRkgedgeADynamicSqlSupport.ETRkgedgeA.allColumns())
                 .from(ETRkgedgeADynamicSqlSupport.ETRkgedgeA)
                 .where(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险导致风险(后果)"))
-//                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险的主体"))
+                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("风险的主体"))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+
+//        System.out.println(sqlDsl_.getSelectStatement());
+
+        return eTRkgedgeAMapper.selectMany(sqlDsl);
+    }
+
+    @Override
+    public List<ETRkgedgeA> findEdgeB() {
+        SelectStatementProvider sqlDsl = select(ETRkgedgeADynamicSqlSupport.ETRkgedgeA.allColumns())
+                .from(ETRkgedgeADynamicSqlSupport.ETRkgedgeA)
+                .where(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("导致"))
+                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("包含"))
+                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("保护"))
+                .or(SqlColumn.of("style -> '$.labelText'", SqlTable.of("e_t_rkgedge_a")), isEqualToWhenPresent("关联"))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
 

@@ -40,13 +40,13 @@ public class RiskController {
     @GetMapping("/data")
     BaseResponse<DateDto> data() {
         DateDto record = new DateDto();
-        List<ETRkgnodeA> listETRkgnodeA = graphService.findNodeA();
+        List<ETRkgnodeA> listETRkgnodeA = graphService.findNodeB();
 //        for (ETRkgnodeA r : listETRkgnodeA) {
 //            r.setData(r.getData().replace("\"{", "{").replace("}\"", "}").replace("\\", ""));
 //            r.setStyle(r.getStyle().replace("\"{", "{").replace("}\"", "}").replace("\\", ""));
 //        }
         record.setNodes(rkgnodeDtoMapper.convert(listETRkgnodeA));
-        List<ETRkgedgeA> listETRkgedgeA = graphService.findEdgeA();
+        List<ETRkgedgeA> listETRkgedgeA = graphService.findEdgeB();
 
 //        listETRkgedgeA.forEach(r -> r.setStyle(r.getStyle().replace("\"{", "{").replace("}\"", "}").replace("\\", "")));
         record.setEdges(rkgedgeDtoMapper.convert(listETRkgedgeA));

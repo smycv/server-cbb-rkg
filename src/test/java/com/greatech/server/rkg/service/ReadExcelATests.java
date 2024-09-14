@@ -370,7 +370,7 @@ public class ReadExcelATests {
                 edge_measure_a.setStyle("{\"endArrow\":true," +
                         "\"lineWidth\":2," +
                         "\"stroke\":\"#59C4F7\"," +
-                        "\"labelText\":\"风险的措施\"\"}");
+                        "\"labelText\":\"风险的措施\"}");
                 graphService.addEdgeA(edge_measure_a);
             }
         }
